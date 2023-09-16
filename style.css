@@ -1,0 +1,16 @@
+body {
+    background-image: url('images/backgroun\ 1.jpeg');
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-position: center;
+}
+
+#rules{
+    margin-top: 50%;
+}
+
+#canvas {
+    padding: 0;
+    margin: auto;
+    display: block;
+}
