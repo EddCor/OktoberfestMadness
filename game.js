@@ -87,9 +87,12 @@ window.onload = () => {
     //esto es para agregar una funcion Listener (un listeneres una funcion que espera que sucedan eventos (tales como escuchar los comandos del teclado))
     document.addEventListener("keydown", (event) => {
         if (isGameStarted) {
+            event.preventDefault()
             if (event.code == "ArrowUp" && position != limitTop) {
+                
                 moveUp();
             } else if (event.code == "ArrowDown" && position != limitBottom) {
+               
                 moveDown();
             }
         }
