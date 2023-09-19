@@ -27,6 +27,9 @@ table2.src="./images/table.png"
 const table3 = new Image();
 table3.src="./images/table.png"
 
+const Beer = new Image();
+Beer.src= "./images/cerveza.png"
+
 
 //para crear el canvas y llamarlo del HTML /Y decirle que el juego es en 2 dimensiones 
 const canvas = document.getElementById("canvas");
@@ -46,10 +49,13 @@ function startgame() {
     const start = document.getElementById("start");
         start.style.display = "none"; 
         game.style.display = "block";
+
+        const beerPosition = { x: canvas.width, y: Math.random() * canvas.height };
         ctx.drawImage (player, 0, canvas.height / 2, 100, 150)
         ctx.drawImage (table1, canvas.width -800, canvas.height / 2, 700, 150)
-        ctx.drawImage (table2, canvas.width -800, canvas.height / 2 -150, 700, 150)
+        ctx.drawImage (table2, canvas.width -800, canvas.height / 2 -150, 700, 150) 
         ctx.drawImage (table3, canvas.width -800, canvas.height / 2 +150, 700, 150)
+        ctx.drawImage(beer, beerPosition.x, beerPosition.y, 30, 50);
 }
 
 // esto es para crear las funciones de movimiento de la muchachona 
@@ -66,7 +72,18 @@ function moveDown() {
 }
 
 
+//esto es para el moviemiento de la cerveza 
+function moveBeer() {
 
+    ctx.clearRect(beerPosition.x, beerPosition.y, 30, 50);
+    beerPosition.x -= 5;
+    ctx.drawImage(beer, beerPosition.x, beerPosition.y, 30, 50);
+    if (beerPosition.x < -30) {
+        beerPosition.x = canvas.width;
+        beerPosition.y = Math.random() * canvas.height;
+    }
+    requestAnimationFrame(moveBeer);
+}
 
 
 
@@ -79,11 +96,8 @@ el punto es para llamar  una funcion o variable que esta dentro de un Objeto que
 window.onload = () => {
     document.getElementById("startbutton").onclick = () => {
         startgame();
-        
-        
+        moveBeer();
     }
-
-
     //esto es para agregar una funcion Listener (un listeneres una funcion que espera que sucedan eventos (tales como escuchar los comandos del teclado))
     document.addEventListener("keydown", (event) => {
         if (isGameStarted) {

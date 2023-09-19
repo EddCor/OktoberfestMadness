@@ -14,3 +14,10 @@ body {
     margin: auto;
     display: block;
 }
+
+.gameover-background {
+    background-image: url('images/game\ over.webp');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
