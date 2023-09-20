@@ -1,116 +1,39 @@
+// esto es la fabrica 
+// el constructor en esta clase es para iniciar o aparecer los items del juego 
 
+class Game {
+   constructor () {
+      this.startscreen = document.getElementById('start')
+      this.gamescreen = document.getElementById('game')
+      this.gameoverscreen = document.getElementById('gameover')
+      this.gamearea = document.getElementById('gamearea')
+      this.height =  700
+      this.width = 900
+      this.muchachona = new Muchachona(gamearea, gamearea.style.clientWidth , (gamearea.style.clientHeight / 2), 150, 100);   
+   
+      this.score = 0
+      
+      this.gameOver = false
 
+        this.gamearea = gamearea
+        this.table1 = new Table(gamearea, gamearea.style.clientWidth  , gamearea.style.clientHeight / 2      , 150, 700);
+        this.table2 = new Table(gamearea, gamearea.style.clientWidth , (gamearea.style.clientHeight / 2) - 150, 150, 700);
+        this.table3 = new Table(gamearea, gamearea.style.clientWidth , (gamearea.style.clientHeight / 2) + 150, 150, 700);
+        
+   } 
 
-isGameStarted = false
-
-
-
-//esto es para ocultar de la imagen principal
-const game = document.getElementById("game");
-game.style.display = "none";
-
-//esto es para ocultar de la imagen principal
-const gameover = document.getElementById("gameover");
-gameover.style.display = "none";
-
-//esto es para cargar la imagen del personaje
-const player = new Image();
-player.src="./images/muchachona.png"
-
-
-const table1 = new Image();
-table1.src="./images/table.png"
-
-const table2 = new Image();
-table2.src="./images/table.png"
-
-const table3 = new Image();
-table3.src="./images/table.png"
-
-const Beer = new Image();
-Beer.src= "./images/cerveza.png"
-
-
-//para crear el canvas y llamarlo del HTML /Y decirle que el juego es en 2 dimensiones 
-const canvas = document.getElementById("canvas");
-const ctx = canvas.getContext("2d");
-
-// Se utiliza para mover a la mushashona y para borrar su posicion previa
-let position = canvas.height/2
-// Limite para que la mushashona no se vaya muy arriba
-const limitTop = canvas.height/2-150
-// Limite para que la mushashona no se vaya muy abajo
-const limitBottom = canvas.height/2+150
-
-
-//esto es para dibujars los elementos del juego como la mesa o el jugador o cualquier otro elemento  y su pocision 
-function startgame() {
-    isGameStarted = true
-    const start = document.getElementById("start");
-        start.style.display = "none"; 
-        game.style.display = "block";
-
-        const beerPosition = { x: canvas.width, y: Math.random() * canvas.height };
-        ctx.drawImage (player, 0, canvas.height / 2, 100, 150)
-        ctx.drawImage (table1, canvas.width -800, canvas.height / 2, 700, 150)
-        ctx.drawImage (table2, canvas.width -800, canvas.height / 2 -150, 700, 150) 
-        ctx.drawImage (table3, canvas.width -800, canvas.height / 2 +150, 700, 150)
-        ctx.drawImage(beer, beerPosition.x, beerPosition.y, 30, 50);
-}
-
-// esto es para crear las funciones de movimiento de la muchachona 
-function moveUp() {
-    ctx.clearRect(0, position, 100, 150)
-    position = position - 150
-    ctx.drawImage (player, 0, position, 100, 150)
-}
-
-function moveDown() {
-    ctx.clearRect(0, position, 100, 150)
-    position = position + 150
-    ctx.drawImage (player, 0, position, 100, 150)
-}
-
-
-//esto es para el moviemiento de la cerveza 
-function moveBeer() {
-
-    ctx.clearRect(beerPosition.x, beerPosition.y, 30, 50);
-    beerPosition.x -= 5;
-    ctx.drawImage(beer, beerPosition.x, beerPosition.y, 30, 50);
-    if (beerPosition.x < -30) {
-        beerPosition.x = canvas.width;
-        beerPosition.y = Math.random() * canvas.height;
+   start() {
+      this.startscreen.style.display = 'none'
+      this.gameoverscreen.style.display = 'none'
+      this.gamescreen.style.display = 'block'
+  
+      this.gamearea.style.height = `${this.height}px`
+      this.gamearea.style.width = `${this.width}px`
+  
+      //this.gameLoop()
     }
-    requestAnimationFrame(moveBeer);
+
+   moveUp() {
+      this.muchachona.moveUp();
+   }
 }
-
-
-
- 
-/*
-esto es una forma moderna:  () => {  igual a: function a(val) {} 
-el punto es para llamar  una funcion o variable que esta dentro de un Objeto que ya esta definido (solo llama loq ue esta a la izq del punto)
-
-*/
-window.onload = () => {
-    document.getElementById("startbutton").onclick = () => {
-        startgame();
-        moveBeer();
-    }
-    //esto es para agregar una funcion Listener (un listeneres una funcion que espera que sucedan eventos (tales como escuchar los comandos del teclado))
-    document.addEventListener("keydown", (event) => {
-        if (isGameStarted) {
-            event.preventDefault()
-            if (event.code == "ArrowUp" && position != limitTop) {
-                
-                moveUp();
-            } else if (event.code == "ArrowDown" && position != limitBottom) {
-               
-                moveDown();
-            }
-        }
-    });
-}
-
-

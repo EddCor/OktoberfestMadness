@@ -1,4 +1,4 @@
-class Beer {
+class Muchachona {
     constructor(gamearea, left, top, height, width) {
         this.gamearea = gamearea
         this.left = left
@@ -7,7 +7,7 @@ class Beer {
         this.width = width
         this.element = document.createElement('img')
     
-        this.element.src = 'images/cerveza.png'
+        this.element.src = 'images/muchachona.png'
     
         this.element.style.position = 'absolute'
         this.element.style.left = `${this.left}px`
@@ -17,4 +17,9 @@ class Beer {
     
         this.gamearea.appendChild(this.element)
       }
+
+      moveUp() {
+        this.top = this.top - 150;
+        this.element.style.top = `${this.top}px`
+    }
 }
