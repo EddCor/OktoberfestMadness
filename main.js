@@ -62,25 +62,27 @@ el punto es para llamar  una funcion o variable que esta dentro de un Objeto que
 
 */
 window.onload = () => {
-    let game = null;
+    let game;
     document.getElementById("startbutton").onclick = () => {
         game = new Game();
         game.start();
         isGameStarted = true;
-        //moveBeer();
+        //MoveBeer();
     }
     //esto es para agregar una funcion Listener (un listeneres una funcion que espera que sucedan eventos (tales como escuchar los comandos del teclado))
     document.addEventListener("keydown", (event) => {
-        if (isGameStarted) {
-            event.preventDefault()
-            if (event.code == "ArrowUp" /*&& position != limitTop*/) {
-                game.moveUp();
-            } else if (event.code == "ArrowDown" /*&& position != limitBottom*/) {
-               
+       
+            if (event.code == "ArrowUp" && game.muchachona.top >150) {
+                game.muchachona.top = game.muchachona.top -150;
+            } else if (event.code == "ArrowDown" && game.muchachona.top <400) {
+                game.muchachona.top = game.muchachona.top +150;
                // moveDown();
             }
-        }
+        
     });
+    document.addEventListener("keyup", (event) =>{
+        game.muchachona.directionY = 0;
+    })
 }
 
 
