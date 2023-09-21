@@ -67,7 +67,7 @@ window.onload = () => {
         game = new Game();
         game.start();
         isGameStarted = true;
-       // moveBeer();
+        moveBeer();
     }
 
     document.getElementById("restartBtn").onclick = () => {

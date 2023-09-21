@@ -28,13 +28,9 @@ class Game {
       this.drawNewBeer = true
 
       this.beerHeights = [0, -150, 150]
-      const init = document.getElementById('init');
-      init.play ();
    }
-   
 
    start() {
-      
       this.startscreen.style.display = 'none'
       this.gameoverscreen.style.display = 'none'
       this.gamescreen.style.display = 'block'
