@@ -4,26 +4,25 @@
 <head>
   <meta charset="utf-8" />
 
-  <title>OktoberFest Madness</title>
+  <title> OktoberFest Madness</title>
 
   <link rel="stylesheet" href="style.css" />
 
-
+  
 </head>
 
 <body>
 
+
   <div id="start">
-
-    <p id="rules">Willkommen to Oktober Fest!
-      In this game the player have to catch all beers, otherwise game over
-
-      Beers will come from a table in a random position, each beer will have a value of 5 points.
-      When game over the total points will displayed and added to a chart where you can put your name
+    <button id="startbutton"> Prost! GO </button>
+    <p id="rules">Willkommen in Oktober Fest!
+      In this game the player have to catch all beers, otherwise Game Over.
+      Beers will come from a table in a random position, each beer will have a value of 100 points, when game is over the total points will displayed   
 
       Viel Spaß!!
     </p>
-    <button id="startbutton"> Prost! GO </button>
+    
   </div>
   
   <div id="game" class="boxNoBorder">
@@ -36,11 +35,13 @@
       <div id="gamearea"></div>
   </div>
 
-  <div id="gameover" class = "gameover-background">
+  <div 
+  id="gameover" class = "gameover-background">
     <h1 id="gameOverTitle">Game Over!</h1>
     <p id="easter">Time is over!. Your score is: </p>
-    <button id="restartBtn">Try again!. No cold beers for you. Leide! </button>
-    <img src="images/game over.webp" alt="Game Over Image" id="gameOverImage">
+    <p id="score-countGaOv"> 0 </p>
+    <button id="restartBtn">Try again!. No cold beers for you. Leider! </button>
+    
   </div>
   
   

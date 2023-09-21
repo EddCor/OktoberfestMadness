@@ -67,8 +67,13 @@ window.onload = () => {
         game = new Game();
         game.start();
         isGameStarted = true;
-        //MoveBeer();
+        moveBeer();
     }
+
+    document.getElementById("restartBtn").onclick = () => {
+        location.reload()
+    }
+
     //esto es para agregar una funcion Listener (un listeneres una funcion que espera que sucedan eventos (tales como escuchar los comandos del teclado))
     document.addEventListener("keydown", (event) => {
        

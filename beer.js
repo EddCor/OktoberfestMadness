@@ -36,7 +36,7 @@ class Beer {
           this.left -= this.score * 0.01}
 
          else{
-          this.left -= 1
+          this.left -= 5
 
          }
         
